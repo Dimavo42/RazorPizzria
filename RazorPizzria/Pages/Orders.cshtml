@@ -1,0 +1,40 @@
+﻿@page
+@model RazorPizzria.Pages.OrdersModel
+@{
+}
+
+
+<h3 class="align-content-center mb-1">Orders</h3>
+<hr class="mb-2" />
+@{
+    if(Model.PizzaOrders.Any())
+    {
+        <form method="post">
+            <table class="table">
+                <thead>
+                <th>Id</th>
+                <th>Pizza Name</th>
+                <th>Price</th>
+                <th>Remove</th>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model.PizzaOrders)
+                    {
+                        <tr>
+                            <td>@order.Id</td>
+                            <td>@order.PizzaName</td>
+                            <td>@order.BasePrice</td>
+                            <td><button type="submit" asp-page-handler="delete" asp-route-id="@order.Id">Delete</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+    }
+    else
+    {
+        <h1 class="align-content-center mt-3">Nothing to show right now!</h1>
+    }
+}
+
+
